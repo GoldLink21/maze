@@ -32,6 +32,16 @@ for(let row = 0; row < map.length; row++) {
         let cellClass = rowStr[i];
         const cellDiv = document.createElement("div");
 
+        if(cellClass==='F'){
+            cellDiv.textContent='F';
+        }
+
+        if(cellClass==='S'){
+            cellDiv.textContent='S';
+            avatarRow=row;
+            avatarCol=i;
+        }
+
         cellDiv.className = "cell " + cellClass;
 
         rowDiv.appendChild(cellDiv);
@@ -63,10 +73,10 @@ function move(dRow, dCol) {
 
     // Using avatarRow and dRow, compute destRow (where the player should move
     // vertically). You'll need to replace "undefined" to do so.
-    const destRow = undefined; 
+    const destRow = dRow+avatarRow; 
     // Using avatarCOl and dCol, compute destCol (where the player should move
     // vertically). You'll need to replace "undefined" to do so.
-    const destCol = undefined;
+    const destCol = dCol+avatarCol;
     const destCell = map[destRow][destCol];
 
     // Check that it is within the bounds of the map, and not a wall.
@@ -74,6 +84,8 @@ function move(dRow, dCol) {
         // Now that you know the player's destination, you need to actually
         // update "avatarRow" and "avatarCol". Add statements to update those
         // two variables below, before "redrawAvatar()".
+        avatarRow=destRow;
+        avatarCol=destCol;
         redrawAvatar();
     }
 
@@ -98,6 +110,22 @@ document.addEventListener('keydown', (event) => {
 
     // Write some logic to check the value of "event.key" and call "move()"
     // with the proper arguments.
+    var dCol=0,dRow=0;
+    switch(event.key){
+        case "ArrowDown":
+            dRow=1;
+            break;
+        case "ArrowUp":
+            dRow=-1;
+            break;
+        case "ArrowRight":
+            dCol=1;
+            break;
+        case "ArrowLeft":
+            dCol=-1;
+            break;
+    }
+    move(dRow,dCol);
 });
 
 youWonDiv.addEventListener("click", () => location.reload());

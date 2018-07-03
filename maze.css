@@ -40,8 +40,11 @@ body {
     width: 33px; 
     line-height: 33px;
     text-align: center;
+    background: grey;
 }
 
 .W {
     background: #00356b;
+    background-image: url(https://vignette.wikia.nocookie.net/mario/images/f/fb/Gold_Brick_Artwork_-_New_Super_Mario_Bros._2.png/revision/latest?cb=20120625180824);
+    background-size: 33px;
 }
