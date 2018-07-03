@@ -6,7 +6,7 @@ const youWonDiv = document.getElementById("youWonDiv")
 const delta = 33;
 
 // Coordinates of the player's avatar.
-let avatarRow
+let avatarRow;
 let avatarCol;
 
 // Initial scan of the map.
@@ -63,10 +63,10 @@ function move(dRow, dCol) {
 
     // Using avatarRow and dRow, compute destRow (where the player should move
     // vertically). You'll need to replace "undefined" to do so.
-    const destRow = undefined; 
+    const destRow = avatarRow+dRow; 
     // Using avatarCOl and dCol, compute destCol (where the player should move
     // vertically). You'll need to replace "undefined" to do so.
-    const destCol = undefined;
+    const destCol = avatarCol+dCol;
     const destCell = map[destRow][destCol];
 
     // Check that it is within the bounds of the map, and not a wall.
@@ -97,6 +97,22 @@ document.addEventListener('keydown', (event) => {
 
     // Write some logic to check the value of "event.key" and call "move()"
     // with the proper arguments.
+    var dRow=0,dCol=0;
+    switch(event.key){
+        case 'ArrowUp':
+            dRow=-1;
+            break;
+        case 'ArrowDown':
+            dRow=1;
+            break;
+        case 'ArrowRight':
+            dCol=1;
+            break;
+        case 'ArrowLeft':
+            dCol=-1;
+            break;
+    }
+    move(dRow,dCol);
 });
 
 youWonDiv.addEventListener("click", () => location.reload());
